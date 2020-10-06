@@ -1,0 +1,807 @@
+!DOCTYPE=HTML
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <script src="utf8.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@0.0.4/dist/fontkit.umd.min.js"></script>
+<script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4/dist/fontkit.umd.min.js"></script>
+<script src="https://bossanova.uk/jexcel/v4/jexcel.js"></script>
+<script src="https://bossanova.uk/jsuites/v3/jsuites.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/pdf-lib@1.11.0"></script>
+<script src="https://unpkg.com/downloadjs@1.4.7"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-base64@3.5.2/base64.min.js"></script>
+<link rel="stylesheet" href="https://bossanova.uk/jsuites/v3/jsuites.css" type="text/css" />
+<link rel="stylesheet" href="https://bossanova.uk/jexcel/v4/jexcel.css" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons" />
+</head>
+<!-- <body> -->
+<!-- <div id="spreadsheet0"></div> -->
+<div id="spreadsheet"></div>
+<!-- <div id="spreadsheet2"></div> -->
+<input type="button" value="Add new tab" onclick="add()" style="width:150px;">
+<input type="button" value="Download selected tab" onclick="downloadx()" style="width:150px;">
+<input type="file" id="csvInput"/>
+<!-- <script>
+    jexcel(document.getElementById('spreadsheet2'), {
+        url:'test.json',
+        columns: [
+            { type:'text', width:300 },
+            { type:'text', width:100 },
+        ]
+    });
+</script> -->
+<input type="text" value="0" name="cid" id="cid" placeholder="Enter ID" />
+<input type="button" value="get row" onclick= "getrow()" />
+
+<p>Click the button to fill form fields in an existing PDF document with <code>pdf-lib</code></p>
+<button  value="GetPDF" onclick="fillForm()"/>
+<p class="small">(Your browser will download the resulting file)</p>
+
+<body onload="fillForm();">
+    <form  action="pdf-fill-form" method="POST">
+  <input type="hidden" id="col0" name="col0" value=""></input>
+  <input type="hidden" id="col1" name="col1" value=""></input>
+  <input type="hidden" id="col2" name="col2" value=""></input>
+  <input type="hidden" id="col3" name="col3" value=""></input>
+  <input type="hidden" id="col4" name="col4" value=""></input>
+  <input type="hidden" id="col5" name="col5" value=""></input>
+  <input type="hidden" id="col6" name="col6" value=""></input>
+  <input type="hidden" id="col7" name="col7" value=""></input>
+  <input type="hidden" id="col8" name="col8" value=""></input>
+  <input type="hidden" id="col9" name="col9" value=""></input>
+  <input type="hidden" id="col10" name="col10" value=""></input>
+  <input type="hidden" id="col11" name="col11" value=""></input>
+  <input type="hidden" id="col12" name="col12" value=""></input>
+  <input type="hidden" id="col13" name="col13" value=""></input>
+  <input type="hidden" id="col14" name="col14" value=""></input>
+  <input type="hidden" id="col15" name="col15" value=""></input>
+  <input type="hidden" id="col16" name="col16" value=""></input>
+  <input type="hidden" id="col17" name="col17" value=""></input>
+  <input type="hidden" id="col18" name="col18" value=""></input>
+  <input type="hidden" id="col19" name="col19" value=""></input>
+  <input type="hidden" id="col20" name="col20" value=""></input>
+  <input type="hidden" id="col21" name="col21" value=""></input>
+  <input type="hidden" id="col22" name="col22" value=""></input>
+  <input type="hidden" id="col23" name="col23" value=""></input>
+  <input type="hidden" id="col24" name="col24" value=""></input>
+  <input type="hidden" id="col25" name="col25" value=""></input>
+  <input type="hidden" id="col26" name="col26" value=""></input>
+  <input type="hidden" id="col27" name="col27" value=""></input>
+  <input type="hidden" id="col28" name="col28" value=""></input>
+  <input type="hidden" id="col29" name="col29" value=""></input>
+  <input type="hidden" id="col30" name="col30" value=""></input>
+  <input type="hidden" id="col31" name="col31" value=""></input>
+  <input type="hidden" id="col32" name="col32" value=""></input>
+  <input type="hidden" id="col33" name="col33" value=""></input>
+  <input type="hidden" id="col34" name="col34" value=""></input>
+  <input type="hidden" id="col35" name="col35" value=""></input>
+  <input type="hidden" id="col36" name="col36" value=""></input>
+  <input type="hidden" id="col37" name="col37" value=""></input>
+  <input type="hidden" id="col38" name="col38" value=""></input>
+  <input type="hidden" id="col39" name="col39" value=""></input>
+  <input type="hidden" id="col40" name="col40" value=""></input>
+  <input type="hidden" id="col41" name="col41" value=""></input>
+  <input type="hidden" id="col42" name="col42" value=""></input>
+  <input type="hidden" id="col43" name="col43" value=""></input>
+  <input type="hidden" id="col44" name="col44" value=""></input>
+  <input type="hidden" id="col45" name="col45" value=""></input>
+  <input type="hidden" id="soii" name="soii" value=""></input>
+  <input type="hidden" id="village" name="village" value=""></input>
+  <input type="hidden" id="district" name="district" value=""></input>
+  <input type="hidden" id="kwang" name="kwang" value=""></input>
+  <input type="hidden" id="road" name="road" value=""></input>
+  <input type="hidden" id="housenumber" name="housenumber" value=""></input>
+  <input type="hidden" id="mhoo" name="mhoo" value=""></input>
+  <input type="hidden" id="province" name="province" value=""></input>
+  <input type="submit">FILL PDF</input>
+    </form>
+</body>
+<script type="module">
+    import { PDFDocument } from 'pdf-lib'
+    import fontkit from '@pdf-lib/fontkit'
+    // note jsdelivr.net does not automatically minify .mjs
+    import { Base64 } from 'https://cdn.jsdelivr.net/npm/js-base64@3.5.2/base64.mjs';
+
+    import { encode, decode } from 'https://cdn.jsdelivr.net/npm/js-base64@3.5.2/base64.mjs';
+</script>
+
+<script>
+    
+/**
+ * Add new worksheet
+ */
+ var col0,col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13,col14,col15,col16,col17,col18,col19,col20,col21,col22,col23,col24,col25,col26,col27,col28,col29,col30,col31,col32,col33,col34,col35,col36,col37,col38,col39,col40,col41,col42,col43,col44,col45,col46,col47,col48,col49,soii,mhoo,housenumber,kwang,district,road,province = "";
+    
+ var changed = function(instance, cell, x, y, value) {
+    var cellName = jexcel.getColumnNameFromId([x,y]);
+    $('#log').append('New change on cell ' + cellName + ' to: ' + value + '');
+}
+
+var beforeChange = function(instance, cell, x, y, value) {
+    var cellName = jexcel.getColumnNameFromId([x,y]);
+    $('#log').append('The cell ' + cellName + ' will be changed');
+}
+ 
+var insertedRow = function(instance) {
+    $('#log').append('Row added');
+}
+ 
+var insertedColumn = function(instance) {
+    $('#log').append('Column added');
+}
+ 
+var deletedRow = function(instance) {
+    $('#log').append('Row deleted');
+}
+ 
+var deletedColumn = function(instance) {
+    $('#log').append('Column deleted');
+}
+ 
+var sort = function(instance, cellNum, order) {
+    var order = (order) ? 'desc' : 'asc';
+    $('#log').append('The column  ' + cellNum + ' sorted by ' + order + '');
+}
+ 
+var resizeColumn = function(instance, cell, width) {
+    $('#log').append('The column  ' + cell + ' resized to width ' + width + ' px');
+}
+ 
+var resizeRow = function(instance, cell, height) {
+    $('#log').append('The row  ' + cell + ' resized to height ' + height + ' px');
+}
+ 
+var selectionActive = function(instance, x1, y1, x2, y2, origin) {
+    var cellName1 = jexcel.getColumnNameFromId([x1, y1]);
+    var cellName2 = jexcel.getColumnNameFromId([x2, y2]);
+    
+    $('#log').append('The selection from ' + cellName1 + ' to ' + cellName2 + '');
+
+
+}
+ 
+var loaded = function(instance) {
+    $('#log').append('New data is loaded');
+}
+ 
+var moveRow = function(instance, from, to) {
+    $('#log').append('The row ' + from + ' was move to the position of ' + to + ' ');
+}
+ 
+var moveColumn = function(instance, from, to) {
+    $('#log').append('The col ' + from + ' was move to the position of ' + to + ' ');
+}
+ 
+var blur = function(instance) {
+    $('#log').append('The table ' + $(instance).prop('id') + ' is blur');
+}
+ 
+var focus = function(instance) {
+    $('#log').append('The table ' + $(instance).prop('id') + ' is focus');
+}
+
+var rowData = function(instance,rownum){
+    
+    $('#log').append('Row : ' + $('#my').jexcel('getRowData', rownum));
+}
+ var data = [
+ ['Jazz', 'Honda', '2019-02-12', '', true, '$ 2.000,00', '#777700'],
+ ['Civic', 'Honda', '2018-07-11', '', true, '$ 4.000,01', '#007777'],
+];
+/*
+jexcel(document.getElementById('spreadsheet0'), {
+ data:data,
+ columns: [
+     { type: 'text', title:'Car', width:120 },
+     { type: 'dropdown', title:'Make', width:200, source:[ "Alfa Romeo", "Audi", "Bmw" ] },
+     { type: 'calendar', title:'Available', width:200 },
+     { type: 'image', title:'Photo', width:120 },
+     { type: 'checkbox', title:'Stock', width:80 },
+     { type: 'numeric', title:'Price', width:100, mask:'$ #.##,00', decimal:',' },
+     { type: 'color', width:100, render:'square', }
+  ]
+});
+*/ 
+var add = function() {
+    var sheets = [];
+
+    sheets.push({
+        sheetName: prompt('Create a new tab', 'New tab ' + document.getElementById('spreadsheet').jexcel.length),
+        minDimensions:[10,10]
+    });
+
+    jexcel.tabs(document.getElementById('spreadsheet'), sheets);
+}
+function base64EncodeUnicode(str) {
+    // First we escape the string using encodeURIComponent to get the UTF-8 encoding of the characters, 
+    // then we convert the percent encodings into raw bytes, and finally feed it to btoa() function.
+    utf8Bytes = encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+            return String.fromCharCode('0x' + p1);
+    });
+
+    return btoa(utf8Bytes);
+}
+
+function base64DecodeUnicode(str) {
+    // Convert Base64 encoded bytes to percent-encoding, and then get the original string.
+    percentEncodedStr = atob(str).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join('');
+
+
+    return decodeURIComponent(percentEncodedStr);
+}
+
+function hasNumber(myString) {
+    return /\d/.test(myString);
+  }
+function myFunction(item, index) {
+  return index + ":" + item + "<br>"; 
+}
+function autopick(sentencex,keywordx){
+    var kx = keywordx;
+    var newx = '';
+    var outx = '';
+    var str=sentencex;
+    var splitted = str.split(" "); //this will output ["1234", "56789"]
+    var sz = splitted.length;
+    var findindex = -1;
+    if(kx=="housenumber"){
+        if(hasNumber(splitted[0])){
+            findindex = 0;
+            outx=splitted[findindex];
+            return outx;
+        }
+
+        else if(hasNumber(splitted[1])){
+            findindex = 1;
+            outx=splitted[findindex];
+            return outx;
+        }
+        
+    }
+
+    else if(kx=="จังหวัด"){
+        findindex = sz-1;
+        outx=splitted[findindex];
+        return outx;
+    }
+    else{
+        for(var i=0;i<splitted.length;i++){
+            if(splitted[i].includes(kx)){
+                if(kx=="หมู่ที่" || kx=="หมู่"){
+                    findindex = i;
+                    outx=splitted[findindex];
+                    if(hasNumber(splitted[i+1])){
+                        outx +=splitted[findindex+1];
+                    }
+                    //newx = splitted[findindex];
+                    //outx = outx.replace(kx,"");
+                    return outx;
+
+                }
+                else if(kx=="หมู่บ้าน"){
+                    
+                    findindex = i;
+                    outx=splitted[findindex];
+                    if(hasNumber(splitted[i+1])){
+                        outx +=splitted[findindex+1];
+                    }
+                    //newx = splitted[findindex];
+                    outx = outx.replace(kx,"");
+                    return outx;
+                }
+                else if(kx=="ซอย" || kx=="ซ."){
+                    findindex = i;
+                    outx=splitted[findindex];
+                    if(hasNumber(splitted[i+1])){
+                        outx +=splitted[findindex+1];
+                    }
+                    outx = outx.replace(kx,"");
+                    return outx;
+                }
+                else if(kx=="แขวง" || kx=="ตำบล" ){
+                    findindex = i;
+                    outx=splitted[findindex];
+                    if(hasNumber(splitted[i+1])){
+                        outx +=splitted[findindex+1];
+                    }
+                    outx = outx.replace(kx,"");
+                    return outx;
+                }
+                else if(kx=="เขต" || kx=="อำเภอ"){
+                    findindex = i;
+                    outx=splitted[findindex];
+                    if(hasNumber(splitted[i+1])){
+                        outx +=splitted[findindex+1];
+                    }
+                    outx = outx.replace(kx,"");
+                    return outx;
+                
+                }
+                else{
+                    findindex = i; 
+                }
+            }
+    }
+}
+    if(findindex<0){
+        outx='-';
+        
+    }
+    else{
+        newx = splitted[findindex];
+        outx = newx.replace(kx,"");
+      //  return outx;
+    }
+    return outx;
+
+}
+/**
+ * Download current worksheet
+ */
+async function fillForm() {
+   const { PDFDocument } = PDFLib;
+   
+ 
+    const url = 'https://pdf-lib.js.org/assets/ubuntu/Ubuntu-R.ttf'
+    const fontBytes = await fetch(url).then((res) => res.arrayBuffer())
+     // Fetch the PDF with form fields
+   const formUrl = '/TestForm4New.pdf'
+   const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer())
+
+         // Fetch the Mario image
+ 
+   // Load a PDF with form fields
+   const pdfDoc = await PDFDocument.load(formPdfBytes)
+     
+   pdfDoc.registerFontkit(fontkit)
+   const ubuntuFont = await pdfDoc.embedFont(fontBytes)
+   // Embed the Mario and emblem images
+
+   // Get the form containing all the fields
+   const form = pdfDoc.getForm()
+
+   // Get all fields in the PDF by their names
+   const Pre = form.getTextField('Pre')
+   const Name = form.getTextField('Name')
+   const FA = form.getTextField('FA')
+   const FAPosition = form.getTextField('FAPosition')
+   const HouseNumber = form.getTextField('HouseNumber')
+   const Village = form.getTextField('Village')
+   const Soii = form.getTextField('Soii')
+
+   const Road = form.getTextField('Road')
+   const Kwang = form.getTextField('Kwang')
+   const District = form.getTextField('District')
+   const Province = form.getTextField('Province')
+   const Postal = form.getTextField('Postal')
+   const Phone = form.getTextField('Phone')
+   const ID = form.getTextField('ID')
+   const DOB = form.getTextField('DOB')
+   const one = form.getTextField('one')
+   const two = form.getTextField('two')
+   const three = form.getTextField('three')
+   const four = form.getTextField('four')
+    
+  
+   document.getElementById('col0').value = col0;
+document.getElementById('col1').value = col1;
+document.getElementById('col2').value = col2;
+document.getElementById('col3').value = col3;
+document.getElementById('col4').value = col4;
+document.getElementById('col5').value = col5;
+document.getElementById('col6').value = col6;
+document.getElementById('col7').value = col7;
+document.getElementById('col8').value = col8;
+document.getElementById('col9').value = col9;
+document.getElementById('col10').value = col10;
+document.getElementById('col11').value = col11;
+document.getElementById('col12').value = col12;
+document.getElementById('col13').value = col13;
+document.getElementById('col14').value = col14;
+document.getElementById('col15').value = col15;
+document.getElementById('col16').value = col16;
+document.getElementById('col17').value = col17;
+document.getElementById('col18').value = col18;
+document.getElementById('col19').value = col19;
+document.getElementById('col20').value = col20;
+document.getElementById('col21').value = col21;
+document.getElementById('col22').value = col22;
+document.getElementById('col23').value = col23;
+document.getElementById('col24').value = col24;
+document.getElementById('col25').value = col25;
+document.getElementById('col26').value = col26;
+document.getElementById('col27').value = col27;
+document.getElementById('col28').value = col28;
+document.getElementById('col29').value = col29;
+document.getElementById('col30').value = col30;
+document.getElementById('col31').value = col31;
+document.getElementById('col32').value = col32;
+document.getElementById('col33').value = col33;
+document.getElementById('col34').value = col34;
+document.getElementById('col35').value = col35;
+document.getElementById('col36').value = col36;
+document.getElementById('col37').value = col37;
+document.getElementById('col38').value = col38;
+document.getElementById('col39').value = col39;
+document.getElementById('col40').value = col40;
+document.getElementById('col41').value = col41;
+document.getElementById('col42').value = col42;
+document.getElementById('col43').value = col43;
+document.getElementById('col44').value = col44;
+document.getElementById('col45').value = col45;
+document.getElementById('housenumber').value = housenumber;
+document.getElementById('soii').value = soii;
+document.getElementById('kwang').value = kwang;
+document.getElementById('district').value = district;
+document.getElementById('road').value = road;
+document.getElementById('mhoo').value = mhoo;
+document.getElementById('province').value = province;
+ 
+   
+   //var cxs = base64EncodeUnicode("สวัสดี");
+    
+   // Fill in the basic info fields
+   /*
+    Pre.setText(cxs);
+    Name.setText(col8+" "+col9);
+    FA.setText(col35);
+    FAPosition.setText(col34);
+    HouseNumber.setText(col12);
+    Village.setText(autopick(col13,"หมู่บ้าน"));
+    Soii.setText(autopick(col13,"ซอย"));
+    Road.setText(autopick(col14,"ถนน"));
+    Kwang.setText(autopick(col14,"แขวง")); 
+    District.setText(autopick(col14,"เขต")); 
+    Province.setText(col15);
+    Postal.setText(col16);
+   
+   // Phone.setText(col19) 
+   // ID.setText(col27)
+   // DOB.setText(col26) 
+    one.setText('111111')
+    two.setText('222222') 
+    three.setText('333333')
+    four.setText('444444') 
+
+  */
+   // Serialize the PDFDocument to bytes (a Uint8Array)
+   //const pdfBytes = await pdfDoc.save();
+
+         // Trigger the browser to download the PDF document
+   //download(pdfBytes, "kukkui-run-tests4.pdf", "application/pdf");
+ }
+
+var downloadx = function() {
+    // Get selected tab
+    var worksheet = document.getElementById('spreadsheet').children[0].querySelector('.selected').getAttribute('data-spreadsheet');
+    // Download
+    document.getElementById('spreadsheet').jexcel[worksheet].download();
+}
+
+var getrow = function(){
+    // Get selected tab
+    var jsonRow = ""; 
+    var jsCustomerRow = [];
+    var jscount = 0;
+    var colcount = 1;
+    var coltemp = "";
+    var setcol = "";
+    var x = document.getElementById("cid").value;
+    x = x-1;
+    var worksheet = document.getElementById('spreadsheet').children[0].querySelector('.selected').getAttribute('data-spreadsheet');
+    // Download
+    
+    console.log(document.getElementById('spreadsheet').jexcel[worksheet].getRowData(x));
+    jsCustomerRow.push(document.getElementById('spreadsheet').jexcel[worksheet].getRowData(x));
+    
+    col0 = jsCustomerRow[0][0];
+    col1 = jsCustomerRow[0][1];
+    col2 = jsCustomerRow[0][2];
+    col3 = jsCustomerRow[0][3];
+    col4 = jsCustomerRow[0][4];
+    col5 = jsCustomerRow[0][5];
+    col6 = jsCustomerRow[0][6];
+    col7 = jsCustomerRow[0][7];
+    col8 = jsCustomerRow[0][8];
+    col9 = jsCustomerRow[0][9];
+    col10 = jsCustomerRow[0][10];
+    col11 = jsCustomerRow[0][11];
+    col12= jsCustomerRow[0][12];
+    col13= jsCustomerRow[0][13];
+    col14 = jsCustomerRow[0][14];
+    col15 = jsCustomerRow[0][15];
+    col16 = jsCustomerRow[0][16];
+    col17 = jsCustomerRow[0][17];
+    col18 = jsCustomerRow[0][18];
+    col19 = jsCustomerRow[0][19];
+    col20 = jsCustomerRow[0][20];
+    col21 = jsCustomerRow[0][21];
+    col22 = jsCustomerRow[0][22];
+    col23 = jsCustomerRow[0][23];
+    col24 = jsCustomerRow[0][24];
+    col25 = jsCustomerRow[0][25];
+    col26 = jsCustomerRow[0][26];
+    col27 = jsCustomerRow[0][27];
+    col28 = jsCustomerRow[0][28];
+    col29 = jsCustomerRow[0][29];
+    col30 = jsCustomerRow[0][30];
+    col31 = jsCustomerRow[0][31];
+    col32 = jsCustomerRow[0][32];
+    col33 = jsCustomerRow[0][33];
+    col34 = jsCustomerRow[0][34];
+    col35 = jsCustomerRow[0][35];
+    col36 = jsCustomerRow[0][36];
+    col37 = jsCustomerRow[0][37];
+    col38 = jsCustomerRow[0][38];
+    col39 = jsCustomerRow[0][39];
+    col40 = jsCustomerRow[0][40];
+    col41 = jsCustomerRow[0][41];
+    col42 = jsCustomerRow[0][42];
+    col43 = jsCustomerRow[0][43];
+    col44 = jsCustomerRow[0][44];
+    col45 = jsCustomerRow[0][45];
+    col46 = jsCustomerRow[0][46];
+    var addressall = col13 + " " + col14 + " " + col15;
+    housenumber=autopick(addressall,"housenumber");
+    soii= autopick(addressall,"ซอย");
+    village = autopick(addressall,"หมู่บ้าน");
+    mhoo = autopick(addressall,"หมู่");
+    road = autopick(addressall,"ถนน");
+    district = autopick(addressall,"เขต");
+    kwang = autopick(addressall,"แขวง");
+    province = autopick(col15,"จังหวัด"); 
+    //var soiix = base64DecodeUnicode(soii);
+
+    alert("Customer Name : "+ col7 + " "+ col8 +" "+col9);
+    alert("hn: "+housenumber + "soii: "+soii+"village: "+village+"mhoo: "+mhoo+"rd: "+road+"district: "+district+"kwang: "+kwang+"prv: "+province);
+ //   alert(col2);
+    fillForm();
+}
+/**
+ * Create worksheet container with two jexcel instances
+ */
+var sheets = [
+    {
+        sheetName: 'CustomerLists',
+        url:'test.json',
+        columns: [
+     { type: 'text', title:'เลขที่บัญชี', width:120 },
+     { type: 'text', title:'Account', width:120 },
+     { type: 'text', title:'Parti', width:120 },
+     { type: 'text', title:'ประเภทอ้างอิง', width:120 },
+     { type: 'text', title:'เลขอ้างอิง', width:120 },
+     { type: 'text', title:'ประเภทบุคคล', width:120 },
+     { type: 'text', title:'รหัสคำนำหน้า', width:120 },
+     { type: 'text', title:'คำนำหน้านาม', width:120 },
+     { type: 'text', title:'ชื่อ', width:120 },
+     { type: 'text', title:'นามสกุล', width:120 },
+     { type: 'text', title:'Name', width:120 },
+     { type: 'text', title:'Surname', width:120 },
+     { type: 'text', title:'เพศ', width:120 },
+     { type: 'text', title:'ที่อยู่1', width:120 },
+     { type: 'text', title:'ที่อยู่2', width:120 },
+     { type: 'text', title:'ที่อยู่3', width:120 },
+     { type: 'text', title:'รหัสไปรษณีย์', width:120 },
+     { type: 'text', title:'โทรศัพท์บ้าน', width:120 },
+     { type: 'text', title:'โทรศัพท์ที่ทำงาน', width:120 },
+     { type: 'text', title:'โทรศัพท์มือถือ', width:120 },
+     { type: 'text', title:'โทรสาร', width:120 },
+     { type: 'text', title:'อีเมล', width:120 },
+     { type: 'text', title:'รหัสประเทศ', width:120 },
+     { type: 'text', title:'สัญชาติ', width:120 },
+     { type: 'text', title:'รหัสอาชีพ', width:120 },
+     { type: 'text', title:'อื่นๆ', width:120 },
+     { type: 'text', title:'วันเกิด', width:120 },
+     { type: 'text', title:'เลขประจำตัวผู้เสียภาษี', width:120 },
+     { type: 'text', title:'การหักภาษี', width:120 },
+     { type: 'text', title:'ผู้ติดต่อ', width:120 },
+     { type: 'text', title:'ผู้มีอำนาจ', width:120 },
+     { type: 'text', title:'รับผลประโยชน์ ธนาคาร', width:120 },
+     { type: 'text', title:'สาขา', width:120 },
+     { type: 'text', title:'เลขบัญชี', width:120 },
+     { type: 'text', title:'MKT Code', width:120 },
+     { type: 'text', title:'MKT Name', width:120 },
+     { type: 'text', title:'Team Code', width:120 },
+     { type: 'text', title:'Team Name', width:120 },
+     { type: 'text', title:'KYCDate', width:120 },
+     { type: 'text', title:'SuitScore', width:120 },
+     { type: 'text', title:'SuitDate', width:120 },
+     { type: 'text', title:'HighNetworth', width:120 },
+     { type: 'text', title:'HighNetworthDate', width:120 },
+     { type: 'text', title:'FatcaDate', width:120 },
+     { type: 'text', title:'US', width:120 },
+     { type: 'text', title:'Active', width:120 }],
+        minDimensions:[100,100],
+        search:true,
+        defaultColWidth: 100,
+        defaultColHeight: 100,
+        tableOverflow: true,
+        tableWidth: "100%",
+        tableHeight: "50%",
+        onchange: changed,
+        onbeforechange: beforeChange,
+        oninsertrow: insertedRow,
+        oninsertcolumn: insertedColumn,
+        ondeleterow: deletedRow,
+        ondeletecolumn: deletedColumn,
+        onselection: selectionActive,
+        onsort: sort,
+        onresizerow: resizeRow,
+        onresizecolumn: resizeColumn,
+        onmoverow: moveRow,
+        onmovecolumn: moveColumn,
+        onload: loaded,
+        onblur: blur,
+        onfocus: focus,
+        onevent: function() {
+            //console.log( $('#spreadsheet').tabs('').jexcel('getRowData',1) );
+            console.log(arguments);
+        },
+        license: '39130-64ebc-bd98e-26bc4',
+        toolbar:[
+            {
+                type: 'i',
+                content: 'undo',
+                onclick: function() {
+                    table.undo();
+                }
+            },
+            {
+                type: 'i',
+                content: 'redo',
+                onclick: function() {
+                    table.redo();
+                }
+            },
+            {
+                type: 'i',
+                content: 'save',
+                onclick: function () {
+                    var worksheet = document.getElementById('spreadsheet').children[0].querySelector('.selected').getAttribute('data-spreadsheet');
+                    document.getElementById('spreadsheet').jexcel[worksheet].download();
+                }
+            },
+            {
+                type: 'select',
+                k: 'font-family',
+                v: ['Arial','Verdana']
+            },
+            {
+                type: 'select',
+                k: 'font-size',
+                v: ['9px','10px','11px','12px','13px','14px','15px','16px','17px','18px','19px','20px']
+            },
+            {
+                type: 'i',
+                content: 'format_align_left',
+                k: 'text-align',
+                v: 'left'
+            },
+            {
+                type:'i',
+                content:'format_align_center',
+                k:'text-align',
+                v:'center'
+            },
+            {
+                type: 'i',
+                content: 'format_align_right', 
+                k: 'text-align',
+                v: 'right'
+            },
+            {
+                type: 'i',
+                content: 'format_bold',
+                k: 'font-weight',
+                v: 'bold'
+            },
+            {
+                type: 'color',
+                content: 'format_color_text',
+                k: 'color'
+            },
+            {
+                type: 'color',
+                content: 'format_color_fill',
+                k: 'background-color'
+            },
+        ],
+
+        
+    },
+    {
+        sheetName: 'NewSheets',
+        minDimensions:[100,100],
+        search:true,
+        defaultColWidth: 100,
+        defaultColHeight: 100,
+        tableOverflow: true,
+        tableWidth: "100%",
+        tableHeight: "50%",
+        toolbar:[
+            {
+                type: 'i',
+                content: 'undo',
+                onclick: function() {
+                    table.undo();
+                }
+            },
+            {
+                type: 'i',
+                content: 'redo',
+                onclick: function() {
+                    table.redo();
+                }
+            },
+            {
+                type: 'i',
+                content: 'save',
+                onclick: function () {
+                    var worksheet = document.getElementById('spreadsheet').children[0].querySelector('.selected').getAttribute('data-spreadsheet');
+                    document.getElementById('spreadsheet').jexcel[worksheet].download();
+                }
+            },
+            {
+                type: 'select',
+                k: 'font-family',
+                v: ['Arial','Verdana']
+            },
+            {
+                type: 'select',
+                k: 'font-size',
+                v: ['9px','10px','11px','12px','13px','14px','15px','16px','17px','18px','19px','20px']
+            },
+            {
+                type: 'i',
+                content: 'format_align_left',
+                k: 'text-align',
+                v: 'left'
+            },
+            {
+                type:'i',
+                content:'format_align_center',
+                k:'text-align',
+                v:'center'
+            },
+            {
+                type: 'i',
+                content: 'format_align_right', 
+                k: 'text-align',
+                v: 'right'
+            },
+            {
+                type: 'i',
+                content: 'format_bold',
+                k: 'font-weight',
+                v: 'bold'
+            },
+            {
+                type: 'color',
+                content: 'format_color_text',
+                k: 'color'
+            },
+            {
+                type: 'color',
+                content: 'format_color_fill',
+                k: 'background-color'
+            },
+        ],
+
+        
+    },
+];
+
+jexcel.tabs(document.getElementById('spreadsheet'), sheets);
+/*var tablex=jexcel.tabs(document.getElementById('spreadsheet'), sheets);*/
+
+  </script>
+
+  
+
+</form>
+</html>

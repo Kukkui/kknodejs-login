@@ -1,0 +1,22 @@
+<html>
+    <script src="https://jexcel.net/v7/jexcel.js"></script>
+    <script src="https://jexcel.net/v7/jsuites.js"></script>
+    <link rel="stylesheet" href="https://jexcel.net/v7/jexcel.css" type="text/css" />
+    <link rel="stylesheet" href="https://jexcel.net/v7/jsuites.css" type="text/css" />
+     
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons" />
+     
+    <div id="spreadsheet1"></div>
+     
+    <script>
+    var grid = jexcel(document.getElementById('spreadsheet1'), {
+        minDimensions: [15,5],
+        toolbar: true,
+        allowComments: true,
+        license: 'YjQzMzdlOTRiOGY3ZTQ0ZDQ4ZTI1YWU3MDFjMDI0ZWJmOTNjODA1NWFiZTRiNDJhNmRiYTJlZjkwODQ3N2IwMWRmNWRjYWUwZDViM2VhMmI3NzVjOTcwMzVlN2ZhODI1Y2EyMmE3NDI0ZmE0ZjVmNGQ2MWEzN2M3MTA4MThhMDUsZXlKdVlXMWxJam9pY0dGMWJDNW9iMlJsYkNJc0ltUmhkR1VpT2pFMk16SXdPVEkwTURBc0ltUnZiV0ZwYmlJNld5SnFjMlpwWkdSc1pTNXVaWFFpTENKcVpYaGpaV3d1Ym1WMElpd2lZMjlrWlhOaGJtUmliM2d1YVc4aUxDSnFjMmhsYkd3dWJtVjBJaXdpTVROemQyMHVZM05pTG1Gd2NDSXNJbXh2WTJGc2FHOXpkQ0pkTENKd2JHRnVJam9pTXlKOQ==',
+    });
+    </script>
+     
+    <input type='button' value='Show Toolbar' onclick="grid.showToolbar();">
+    <input type='button' value='Hide Toolbar' onclick="grid.hideToolbar();">
+    </html>

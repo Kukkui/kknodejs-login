@@ -1,0 +1,25 @@
+<html>
+<script src="https://bossanova.uk/jexcel/v4/jexcel.js"></script>
+<script src="https://bossanova.uk/jsuites/v3/jsuites.js"></script>
+<link rel="stylesheet" href="https://bossanova.uk/jexcel/v4/jexcel.css" type="text/css" />
+<link rel="stylesheet" href="https://bossanova.uk/jsuites/v3/jsuites.css" type="text/css" />
+
+
+<div id="spreadsheet"></div>
+
+<script>
+jexcel(document.getElementById('spreadsheet'), {
+    csv:'https://bossanova.uk/jexcel/v4/demo.csv',
+    csvHeaders:true,
+    search:true,
+    pagination:10,
+    columns: [
+        { type:'text', width:300 },
+        { type:'text', width:200 },
+        { type:'text', width:100 },
+        { type:'text', width:100 },
+        { type:'text', width:100 },
+     ]
+});
+</script>
+</html>

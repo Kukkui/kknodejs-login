@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jExcel_ImportData_FromCSVFile</title>
+    <link rel="stylesheet" href="https://bossanova.uk/jexcel/v3/jexcel.css" type="text/css" />
+    <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
+
+    <script src="https://bossanova.uk/jexcel/v3/jexcel.js"></script>
+    <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
+</head>
+<body>
+    <div id='my'></div>
+    <div id="spreadsheet1"></div>
+    <p><button id='download'>Export my spreadsheet as CSV</button></p>
+</body>
+<script>
+    my = jexcel(document.getElementById('my'), {
+        csv:'http://cdn.bossanova.uk/demo/demo1.csv',
+        csvHeaders:true,
+        colWidths: [70, 200, 300],
+    });
+    mySpreadsheet = jexcel(document.getElementById('spreadsheet1'), {
+        csv:'https://bossanova.uk/components/bossanova-ui/demo/demo1.csv',
+        csvHeaders:true,
+        columns: [
+            { type:'text', width:300 },
+            { type:'text', width:100 },
+            { type:'text', width:100 },
+            { type:'text', width:150 },
+            { type:'text', width:150 }
+        ]
+    });
+
+    document.getElementById('download').onclick = function () {
+        mySpreadsheet.download();
+    }
+</script>
+</html>
